@@ -1,5 +1,5 @@
 # EX01 Developing a Simple Webserver
-## Date:
+## Date:17.03.24
 
 ## AIM:
 To develop a simple webserver to serve html pages.
@@ -21,73 +21,57 @@ Serving the HTML pages.
 Testing the webserver.
 
 ## PROGRAM:
-from http.server import HTTPServer,BaseHTTPRequestHandler
 
-content='''
-<!doctype html>
+```
+
+from http.server import HTTPServer, BaseHTTPRequestHandler
+content = """
+<!DOCTYPE html>
 <html>
 <head>
-<title> My Web Server</title>
+<title>My webserver</title>
 </head>
 <body>
-<h1>Top Five Revenue from Companies</h1>
-<table border=2>
-<tr>
-<th> Company Name</th>
-<th> Revenue</th>
-<th> Financial Year</th>
-</tr>
-
-<tr>
-<td> Micro Soft</td>
-<td> $86.6</td>
-<td> 2014</td>
-</tr>
-<tr>
-<td> Micro Soft</td>
-<td> $86.6</td>
-<td> 2014</td>
-</tr>
-<tr>
-<td> Micro Soft</td>
-<td> $86.6</td>
-<td> 2014</td>
-</tr>
-<tr>
-<td> Micro Soft</td>
-<td> $86.6</td>
-<td> 2014</td>
-</tr>
-<tr>
-<td> Micro Soft</td>
-<td> $86.6</td>
-<td> 2014</td>
-</tr>
-<tr>
-<td> Micro Soft</td>
-<td> $86.6</td>
-<td> 2014</td>
-</tr>
-</table>
+<h1><u>Languages used iun Web Development</u><h1>
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>Bootstrap</li>
 </body>
 </html>
-'''
-
-class MyServer(BaseHTTPRequestHandler):
+"""
+class myhandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        print("Get request received...")
-        self.send_response(200) 
-        self.send_header("content-type", "text/html")       
+        print("request received")
+        self.send_response(200)
+        self.send_header('content-type', 'text/html; charset=utf-8')
         self.end_headers()
         self.wfile.write(content.encode())
-
-print("This is my webserver") 
-server_address =('',8000)
-httpd = HTTPServer(server_address,MyServer)
+server_address = ('',80)
+httpd = HTTPServer(server_address,myhandler)
+print("my webserver is running...")
+httpd.serve_forever()
+"""
+class myhandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        print("request received")
+        self.send_response(200)
+        self.send_header('content-type', 'text/html; charset=utf-8')
+        self.end_headers()
+        self.wfile.write(content.encode())
+server_address = ('',8000)
+httpd = HTTPServer(server_address,myhandler)
+print("my webserver is running...")
 httpd.serve_forever()
 
+```
+
 ## OUTPUT:
-![alt text](image.png)
+![web1](https://github.com/MDINESH220305/simplewebserver/assets/162429215/edbd3644-f528-470d-af05-050aff25bebb)
+
+
+
 
 ## RESULT:
 The program for implementing simple webserver is executed successfully.
